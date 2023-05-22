@@ -23,7 +23,7 @@ public class TripadvisorTest {
     }
 
     @Test
-    public void testLoginWithEmptyEmailAndPassword() {
+    public void testLoginWithEmptyEmailAndEmptyPassword() {
         page.getButtonSignIn().click();
     }
 
