@@ -3,7 +3,6 @@ package by.itacademy.filenkovvladislav.taf.sites;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.util.concurrent.TimeUnit;
@@ -22,32 +21,32 @@ public class PizzatempoTest {
 
     @Test
     public void testLoginWithEmptyEmailAndEmptyPassword() {
-        page.getButtonSignIn().click();
+        page.clickButtonSignIn();
     }
 
     @Test
     public void testLoginWithIncorrectEmail() {
-        page.getInputEmailAddress().sendKeys("email");
-        page.getButtonSignIn().click();
+        page.inputIncorrectEmailAddress(8);
+        page.clickButtonSignIn();
     }
 
     @Test
     public void testLoginWithEmptyEmailAndAnyPassword() {
-        page.getInputPassword().sendKeys("fgfhj134jj7");
-        page.getButtonSignIn().click();
+        page.inputPassword(8);
+        page.clickButtonSignIn();
     }
 
     @Test
     public void testLoginWithCorrectEmailAndEmptyPassword() {
-        page.getInputEmailAddress().sendKeys("test@mail.com");
-        page.getButtonSignIn().click();
+        page.inputCorrectEmailAddress(8);
+        page.clickButtonSignIn();
     }
 
     @Test
     public void testLoginWithCorrectEmailAndAnyPassword() {
-        page.getInputEmailAddress().sendKeys("test@mail.com");
-        page.getInputPassword().sendKeys("fgfhj134jj7");
-        page.getButtonSignIn().click();
+        page.inputCorrectEmailAddress(8);
+        page.inputPassword(8);
+        page.clickButtonSignIn();
     }
 
     @AfterEach

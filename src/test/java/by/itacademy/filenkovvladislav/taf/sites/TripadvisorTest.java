@@ -3,8 +3,8 @@ package by.itacademy.filenkovvladislav.taf.sites;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
+
 import java.util.concurrent.TimeUnit;
 
 public class TripadvisorTest {
@@ -17,33 +17,33 @@ public class TripadvisorTest {
         page = new TripadvisorPage(driver);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.get("https://www.tripadvisor.com");
-        page.getSignInOrRegister().click();
-        driver.switchTo().frame(driver.findElement(By.cssSelector(page.iframeSignInCssSelector)));
-        page.getButtonContinueWithEmail().click();
+        page.clickSignInOrRegister();
+        page.switchToIframe();
+        page.clickButtonContinueWithEmail();
     }
 
     @Test
     public void testLoginWithEmptyEmailAndEmptyPassword() {
-        page.getButtonSignIn().click();
+        page.clickButtonSignIn();
     }
 
     @Test
     public void testLoginWithIncorrectEmail() {
-        page.getInputEmailAddress().sendKeys("email");
-        page.getButtonSignIn().click();
+        page.inputIncorrectEmailAddress(8);
+        page.clickButtonSignIn();
     }
 
     @Test
     public void testLoginWithCorrectEmailAndEmptyPassword() {
-        page.getInputEmailAddress().sendKeys("test@mail.com");
-        page.getButtonSignIn().click();
+        page.inputCorrectEmailAddress(8);
+        page.clickButtonSignIn();
     }
 
     @Test
     public void testLoginWithCorrectEmailAndAnyPassword() {
-        page.getInputEmailAddress().sendKeys("test@mail.com");
-        page.getInputPassword().sendKeys("fgfhj134jj7");
-        page.getButtonSignIn().click();
+        page.inputCorrectEmailAddress(8);
+        page.inputPassword(8);
+        page.clickButtonSignIn();
     }
 
     @AfterEach

@@ -17,24 +17,22 @@ public class DominosTest {
         page = new DominosPage(driver);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.get("https://dominos.by/");
-        if (page.closePopUp() != null) {
-            page.closePopUp().click();
-        }
-        page.getSignIn().click();
+        page.closePopUp();
+        page.clickSignIn();
     }
 
     @Test
     public void testLoginWithIncorrectEmailAndAnyPassword() {
-        page.getInputEmailAddress().sendKeys("email");
-        page.getInputPassword().sendKeys("fgfhj134jj7");
-        page.getButtonSignIn().click();
+        page.inputIncorrectEmailAddress(8);
+        page.inputPassword(8);
+        page.clickButtonSignIn();
     }
 
     @Test
     public void testLoginWithCorrectEmailAndAnyPassword() {
-        page.getInputEmailAddress().sendKeys("test@mail.com");
-        page.getInputPassword().sendKeys("fgfhj134jj7");
-        page.getButtonSignIn().click();
+        page.inputCorrectEmailAddress(8);
+        page.inputPassword(8);
+        page.clickButtonSignIn();
     }
 
     @AfterEach

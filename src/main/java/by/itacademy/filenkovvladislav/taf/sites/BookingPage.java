@@ -7,29 +7,40 @@ import org.openqa.selenium.WebElement;
 public class BookingPage {
     private WebDriver driver;
 
+    Util util = new Util();
+
     public BookingPage(WebDriver driver) {
         this.driver = driver;
     }
 
-    public WebElement closePopUp() {
-        return driver.findElement(By.cssSelector("button[aria-label='Скрыть меню входа в аккаунт.']"));
+    public void closePopUp() {
+        WebElement popUp = driver.findElement(By.cssSelector("button[aria-label='Скрыть меню входа в аккаунт.']"));
+        if (popUp != null) {
+            popUp.click();
+        }
     }
 
-    public WebElement getSignInOrRegister() {
-        return driver.findElement(By.xpath("//*[@id='b2indexPage']/div[1]/div/header/nav[1]/div[2]/a[2]"));
+    public void clickSignInOrRegister() {
+        driver.findElement(By.xpath("//*[@id='b2indexPage']/div[1]/div/header/nav[1]/div[2]/a[2]")).click();
     }
 
-    public WebElement getInputEmailAddress() {
-        return driver.findElement(By.xpath("//*[@id='username']"));
+    public void inputCorrectEmailAddress(int numberOfLetters) {
+        driver.findElement(By.xpath("//*[@id='username']")).sendKeys(util.generateRandomEmail(numberOfLetters));
     }
 
-    public WebElement getButtonContinueWithEmail() {
-        return driver.findElement(By.xpath("//*[@id='root']/div/div/div/div[2]/div[1]/div/div/div/div/div/div/form/div[3]/button"));
+    public void inputIncorrectEmailAddress(int numberOfLetters) {
+        driver.findElement(By.xpath("//*[@id='username']")).sendKeys(util.randomString(numberOfLetters));
     }
-    public WebElement getInputPassword() {
-        return driver.findElement(By.xpath("//*[@id='password']"));
+
+    public void clickButtonContinueWithEmail() {
+        driver.findElement(By.xpath("//*[@id='root']/div/div/div/div[2]/div[1]/div/div/div/div/div/div/form/div[3]/button")).click();
     }
-    public WebElement getButtonSignIn() {
-        return driver.findElement(By.xpath("//*[@id='root']/div/div/div/div[2]/div[1]/div/div/div/div/div/div/form/div[2]/button"));
+
+    public void inputPassword(int numberOfLetters) {
+        driver.findElement(By.xpath("//*[@id='new_password']")).sendKeys(util.generateRandomPassword(numberOfLetters));
+    }
+
+    public void clickButtonSignIn() {
+        driver.findElement(By.xpath("//*[@id='root']/div/div/div/div[2]/div[1]/div/div/div/div/div/div/form/button")).click();
     }
 }

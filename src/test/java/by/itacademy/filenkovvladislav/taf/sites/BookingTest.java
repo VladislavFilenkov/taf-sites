@@ -4,6 +4,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.chrome.ChromeDriver;
+
 import java.util.concurrent.TimeUnit;
 
 public class BookingTest {
@@ -16,42 +17,40 @@ public class BookingTest {
         page = new BookingPage(driver);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.get("https://www.booking.com");
-        if (page.closePopUp() != null) {
-            page.closePopUp().click();
-        }
-        page.getSignInOrRegister().click();
+        page.closePopUp();
+        page.clickSignInOrRegister();
     }
 
     @Test
     public void testLoginWithEmptyEmail() {
-        page.getButtonContinueWithEmail().click();
+        page.clickButtonContinueWithEmail();
     }
 
     @Test
     public void testLoginWithIncorrectEmail() {
-        page.getInputEmailAddress().sendKeys("email");
-        page.getButtonContinueWithEmail().click();
+        page.inputIncorrectEmailAddress(8);
+        page.clickButtonContinueWithEmail();
     }
 
     @Test
     public void testLoginWithCorrectEmail() {
-        page.getInputEmailAddress().sendKeys("test@mail.com");
-        page.getButtonContinueWithEmail().click();
+        page.inputCorrectEmailAddress(8);
+        page.clickButtonContinueWithEmail();
     }
 
     @Test
     public void testLoginWithCorrectEmailAndEmptyPassword() {
-        page.getInputEmailAddress().sendKeys("test@mail.com");
-        page.getButtonContinueWithEmail().click();
-        page.getButtonSignIn().click();
+        page.inputCorrectEmailAddress(8);
+        page.clickButtonContinueWithEmail();
+        page.clickButtonSignIn();
     }
 
     @Test
     public void testLoginWithCorrectEmailAndAnyPassword() {
-        page.getInputEmailAddress().sendKeys("test@mail.com");
-        page.getButtonContinueWithEmail().click();
-        page.getInputPassword().sendKeys("fgfhj134jj7");
-        page.getButtonSignIn().click();
+        page.inputCorrectEmailAddress(8);
+        page.clickButtonContinueWithEmail();
+        page.inputPassword(8);
+        page.clickButtonSignIn();
     }
 
     @AfterEach
