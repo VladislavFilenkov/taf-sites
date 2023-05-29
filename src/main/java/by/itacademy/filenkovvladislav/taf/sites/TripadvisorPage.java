@@ -22,10 +22,6 @@ public class TripadvisorPage {
         driver.get("https://www.tripadvisor.com");
     }
 
-    public void enableImplicitlyWait() {
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-    }
-
     public void switchToIframe() {
         driver.switchTo().frame(driver.findElement(By.xpath(switchToIframeXpath)));
     }

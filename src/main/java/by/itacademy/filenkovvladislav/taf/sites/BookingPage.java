@@ -4,8 +4,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import java.util.concurrent.TimeUnit;
-
 public class BookingPage {
     private WebDriver driver;
     private String popUpXpath = "//button[@aria-label='Скрыть меню входа в аккаунт.']";
@@ -21,10 +19,6 @@ public class BookingPage {
 
     public void openWebSite() {
         driver.get("https://www.booking.com");
-    }
-
-    public void enableImplicitlyWait() {
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
     public void closePopUp() {

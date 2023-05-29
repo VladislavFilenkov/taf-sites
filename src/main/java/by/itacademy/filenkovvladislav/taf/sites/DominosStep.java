@@ -10,7 +10,6 @@ public class DominosStep {
     }
 
     public void preparatoryActions() {
-        page.enableImplicitlyWait();
         page.openWebSite();
         page.closePopUp();
         page.clickSignIn();

@@ -3,8 +3,20 @@ package by.itacademy.filenkovvladislav.taf.sites;
 import com.github.javafaker.Faker;
 
 public class Util {
-    Faker faker = new Faker();
-    String randomCorrectEmail = faker.internet().emailAddress();
-    String randomIncorrectEmail = faker.toString();
-    String randomPassword = faker.internet().password();
+
+    public static String randomCorrectEmail() {
+        Faker faker = new Faker();
+        return faker.internet().emailAddress();
+    }
+
+    public static String randomIncorrectEmail() {
+        Faker faker = new Faker();
+        return faker.toString();
+    }
+
+    public static String randomPassword() {
+        Faker faker = new Faker();
+        return faker.internet().password();
+    }
+
 }

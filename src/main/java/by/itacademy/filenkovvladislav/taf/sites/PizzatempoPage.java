@@ -19,10 +19,6 @@ public class PizzatempoPage {
         driver.get("https://www.pizzatempo.by/");
     }
 
-    public void enableImplicitlyWait() {
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-    }
-
     public void inputEmailAddress(String email) {
         driver.findElement(By.name(emailAddressName)).sendKeys(email);
     }

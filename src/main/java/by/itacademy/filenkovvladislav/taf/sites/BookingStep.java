@@ -10,7 +10,6 @@ public class BookingStep {
     }
 
     public void preparatoryActions() {
-        page.enableImplicitlyWait();
         page.openWebSite();
         page.closePopUp();
         page.clickSignInOrRegister();

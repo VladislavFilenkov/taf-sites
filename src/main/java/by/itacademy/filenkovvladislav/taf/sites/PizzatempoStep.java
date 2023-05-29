@@ -10,7 +10,6 @@ public class PizzatempoStep {
     }
 
     public void preparatoryActions() {
-        page.enableImplicitlyWait();
         page.openWebSite();
     }
 

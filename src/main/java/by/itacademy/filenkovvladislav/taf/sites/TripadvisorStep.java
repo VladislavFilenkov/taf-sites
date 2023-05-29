@@ -10,7 +10,6 @@ public class TripadvisorStep {
     }
 
     public void preparatoryActions() {
-        page.enableImplicitlyWait();
         page.openWebSite();
         page.clickSignInOrRegister();
         page.switchToIframe();

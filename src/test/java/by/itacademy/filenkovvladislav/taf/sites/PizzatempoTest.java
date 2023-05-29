@@ -5,6 +5,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.util.concurrent.TimeUnit;
+
 public class PizzatempoTest {
     ChromeDriver driver;
     PizzatempoStep step;
@@ -13,6 +15,7 @@ public class PizzatempoTest {
     public void warmUp() {
         driver = new ChromeDriver();
         step = new PizzatempoStep(driver);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         step.preparatoryActions();
     }
 

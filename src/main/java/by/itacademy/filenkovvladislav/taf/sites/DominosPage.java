@@ -23,10 +23,6 @@ public class DominosPage {
         driver.get("https://dominos.by/");
     }
 
-    public void enableImplicitlyWait() {
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-    }
-
     public void closePopUp() {
         WebElement popUp = driver.findElement(By.xpath(popUpXpath));
         if (popUp != null) {
