@@ -5,48 +5,40 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import java.util.concurrent.TimeUnit;
-
 public class PizzatempoTest {
     ChromeDriver driver;
-    PizzatempoPage page;
+    PizzatempoStep step;
 
     @BeforeEach
     public void warmUp() {
         driver = new ChromeDriver();
-        page = new PizzatempoPage(driver);
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        driver.get("https://www.pizzatempo.by/");
+        step = new PizzatempoStep(driver);
+        step.preparatoryActions();
     }
 
     @Test
     public void testLoginWithEmptyEmailAndEmptyPassword() {
-        page.clickButtonSignIn();
+        step.fillLoginFormAndSubmit("", "");
     }
 
     @Test
     public void testLoginWithIncorrectEmail() {
-        page.inputIncorrectEmailAddress(8);
-        page.clickButtonSignIn();
+        step.fillLoginFormAndSubmit("email", "");
     }
 
     @Test
     public void testLoginWithEmptyEmailAndAnyPassword() {
-        page.inputPassword(8);
-        page.clickButtonSignIn();
+        step.fillLoginFormAndSubmit("", "cd6fv6frd");
     }
 
     @Test
     public void testLoginWithCorrectEmailAndEmptyPassword() {
-        page.inputCorrectEmailAddress(8);
-        page.clickButtonSignIn();
+        step.fillLoginFormAndSubmit("test@mail.com", "");
     }
 
     @Test
     public void testLoginWithCorrectEmailAndAnyPassword() {
-        page.inputCorrectEmailAddress(8);
-        page.inputPassword(8);
-        page.clickButtonSignIn();
+        step.fillLoginFormAndSubmit("test@mail.com", "cd6fv6frd");
     }
 
     @AfterEach

@@ -4,38 +4,49 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import java.util.concurrent.TimeUnit;
+
 public class DominosPage {
     private WebDriver driver;
-    Util util = new Util();
+
+    private String popUpXpath = "//button[@data-test-type='close']";
+    private String signInXpath = "//button[@data-test-type='login']";
+    private String emailAddressByName = "email";
+    private String passwordByName = "password";
+    private String buttonSignInXpath = "//button[@type='submit' and @data-test='custom-button']";
 
     public DominosPage(WebDriver driver) {
         this.driver = driver;
     }
 
+    public void openWebSite() {
+        driver.get("https://dominos.by/");
+    }
+
+    public void enableImplicitlyWait() {
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    }
+
     public void closePopUp() {
-        WebElement popUp = driver.findElement(By.cssSelector("body > div.custom-modal.custom-modal--size-content.custom-modal--padding-none.custom-modal--bg-transparent > div.custom-modal__content-holder > button"));
+        WebElement popUp = driver.findElement(By.xpath(popUpXpath));
         if (popUp != null) {
             popUp.click();
         }
     }
 
     public void clickSignIn() {
-        driver.findElement(By.xpath("//*[@id='app-root']/div/div[1]/div[1]/div/div[4]/div/div/div[3]/button")).click();
+        driver.findElement(By.xpath(signInXpath)).click();
     }
 
-    public void inputCorrectEmailAddress(int numberOfLetters) {
-        driver.findElement(By.xpath("/html/body/div[4]/div[2]/div/div/div/div[2]/div[2]/div/form/div/div[1]/input")).sendKeys(util.generateRandomEmail(numberOfLetters));
+    public void inputEmailAddress(String email) {
+        driver.findElement(By.name(emailAddressByName)).sendKeys(email);
     }
 
-    public void inputIncorrectEmailAddress(int numberOfLetters) {
-        driver.findElement(By.xpath("/html/body/div[4]/div[2]/div/div/div/div[2]/div[2]/div/form/div/div[1]/input")).sendKeys(util.randomString(numberOfLetters));
-    }
-
-    public void inputPassword(int numberOfLetters) {
-        driver.findElement(By.xpath("/html/body/div[4]/div[2]/div/div/div/div[2]/div[2]/div/form/div/div[2]/input")).sendKeys(util.generateRandomPassword(numberOfLetters));
+    public void inputPassword(String password) {
+        driver.findElement(By.name(passwordByName)).sendKeys(password);
     }
 
     public void clickButtonSignIn() {
-        driver.findElement(By.xpath("/html/body/div[4]/div[2]/div/div/div/div[2]/div[2]/div/form/div/button")).click();
+        driver.findElement(By.xpath(buttonSignInXpath)).click();
     }
 }

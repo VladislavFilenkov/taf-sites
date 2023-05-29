@@ -1,0 +1,23 @@
+package by.itacademy.filenkovvladislav.taf.sites;
+
+import org.openqa.selenium.WebDriver;
+
+public class DominosStep {
+    DominosPage page;
+
+    public DominosStep(WebDriver driver) {
+        page = new DominosPage(driver);
+    }
+
+    public void preparatoryActions() {
+        page.enableImplicitlyWait();
+        page.openWebSite();
+        page.closePopUp();
+        page.clickSignIn();
+    }
+    public void fillLoginFormAndSubmit(String email, String password) {
+        page.inputEmailAddress(email);
+        page.inputPassword(password);
+        page.clickButtonSignIn();
+    }
+}

@@ -3,39 +3,50 @@ package by.itacademy.filenkovvladislav.taf.sites;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+import java.util.concurrent.TimeUnit;
+
 public class TripadvisorPage {
     private WebDriver driver;
-    Util util = new Util();
+    private String switchToIframeXpath = "//iframe[@title='regcontroller']";
+    private String signInOrRegisterXpath = "//span[text()='Sign in']";
+    private String buttonContinueWithEmailXpath = "//span[text()='Continue with email']";
+    private String emailAddressId = "regSignIn.email";
+    private String passwordId = "regSignIn.password";
+    private String buttonSignInXpath = "//*[@id='regSignIn']//button[text()='Sign in']";
 
     public TripadvisorPage(WebDriver driver) {
         this.driver = driver;
     }
 
+    public void openWebSite() {
+        driver.get("https://www.tripadvisor.com");
+    }
+
+    public void enableImplicitlyWait() {
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    }
+
     public void switchToIframe() {
-        driver.switchTo().frame(driver.findElement(By.cssSelector("body > div.VZmgo.D.X0.X1.Za.Ra > div > div.TocEc._Z.S2.H2._f.WHsPz > div > div > iframe")));
+        driver.switchTo().frame(driver.findElement(By.xpath(switchToIframeXpath)));
     }
 
     public void clickSignInOrRegister() {
-        driver.findElement(By.xpath("//*[@id='lithium-root']/header/div/nav/div/div[2]/a[3]")).click();
+        driver.findElement(By.xpath(signInOrRegisterXpath)).click();
     }
 
-    public void inputCorrectEmailAddress(int numberOfLetters) {
-        driver.findElement(By.xpath("//*[@id='regSignIn.email']")).sendKeys(util.generateRandomEmail(numberOfLetters));
-    }
-
-    public void inputIncorrectEmailAddress(int numberOfLetters) {
-        driver.findElement(By.xpath("//*[@id='regSignIn.email']")).sendKeys(util.randomString(numberOfLetters));
+    public void inputEmailAddress(String email) {
+        driver.findElement(By.id(emailAddressId)).sendKeys(email);
     }
 
     public void clickButtonContinueWithEmail() {
-        driver.findElement(By.cssSelector("#ssoButtons > button")).click();
+        driver.findElement(By.xpath(buttonContinueWithEmailXpath)).click();
     }
 
-    public void inputPassword(int numberOfLetters) {
-        driver.findElement(By.xpath("//*[@id='regSignIn.password']")).sendKeys(util.generateRandomPassword(numberOfLetters));
+    public void inputPassword(String password) {
+        driver.findElement(By.id(passwordId)).sendKeys(password);
     }
 
     public void clickButtonSignIn() {
-        driver.findElement(By.xpath("//*[@id='regSignIn']/div[4]/button[1]")).click();
+        driver.findElement(By.xpath(buttonSignInXpath)).click();
     }
 }

@@ -5,34 +5,25 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import java.util.concurrent.TimeUnit;
-
 public class DominosTest {
     ChromeDriver driver;
-    DominosPage page;
+    DominosStep step;
 
     @BeforeEach
     public void warmUp() {
         driver = new ChromeDriver();
-        page = new DominosPage(driver);
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        driver.get("https://dominos.by/");
-        page.closePopUp();
-        page.clickSignIn();
+        step = new DominosStep(driver);
+        step.preparatoryActions();
     }
 
     @Test
     public void testLoginWithIncorrectEmailAndAnyPassword() {
-        page.inputIncorrectEmailAddress(8);
-        page.inputPassword(8);
-        page.clickButtonSignIn();
+        step.fillLoginFormAndSubmit("email", "3edc4f");
     }
 
     @Test
     public void testLoginWithCorrectEmailAndAnyPassword() {
-        page.inputCorrectEmailAddress(8);
-        page.inputPassword(8);
-        page.clickButtonSignIn();
+        step.fillLoginFormAndSubmit("test@mail.com", "3edc4f");
     }
 
     @AfterEach

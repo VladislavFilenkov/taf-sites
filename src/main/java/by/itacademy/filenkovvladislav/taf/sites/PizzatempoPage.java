@@ -3,27 +3,35 @@ package by.itacademy.filenkovvladislav.taf.sites;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+import java.util.concurrent.TimeUnit;
+
 public class PizzatempoPage {
     private WebDriver driver;
-    Util util = new Util();
+    private String emailAddressName = "astroauth_login";
+    private String passwordName = "astroauth_pass";
+    private String buttonSignInName = "astroauth_submit";
 
     public PizzatempoPage(WebDriver driver) {
         this.driver = driver;
     }
 
-    public void inputCorrectEmailAddress(int numberOfLetters) {
-        driver.findElement(By.xpath("/html/body/div/div[1]/form/p[1]/input")).sendKeys(util.generateRandomEmail(numberOfLetters));
+    public void openWebSite() {
+        driver.get("https://www.pizzatempo.by/");
     }
 
-    public void inputIncorrectEmailAddress(int numberOfLetters) {
-        driver.findElement(By.xpath("/html/body/div/div[1]/form/p[1]/input")).sendKeys(util.randomString(numberOfLetters));
+    public void enableImplicitlyWait() {
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
-    public void inputPassword(int numberOfLetters) {
-        driver.findElement(By.xpath("/html/body/div/div[1]/form/p[2]/input[1]")).sendKeys(util.generateRandomPassword(numberOfLetters));
+    public void inputEmailAddress(String email) {
+        driver.findElement(By.name(emailAddressName)).sendKeys(email);
+    }
+
+    public void inputPassword(String password) {
+        driver.findElement(By.name(passwordName)).sendKeys(password);
     }
 
     public void clickButtonSignIn() {
-        driver.findElement(By.xpath("/html/body/div/div[1]/form/p[2]/input[2]")).click();
+        driver.findElement(By.name(buttonSignInName)).click();
     }
 }

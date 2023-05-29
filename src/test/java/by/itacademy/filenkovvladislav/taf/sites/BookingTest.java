@@ -5,52 +5,40 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import java.util.concurrent.TimeUnit;
-
 public class BookingTest {
     ChromeDriver driver;
-    BookingPage page;
+    BookingStep step;
 
     @BeforeEach
     public void warmUp() {
         driver = new ChromeDriver();
-        page = new BookingPage(driver);
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        driver.get("https://www.booking.com");
-        page.closePopUp();
-        page.clickSignInOrRegister();
+        step = new BookingStep(driver);
+        step.preparatoryActions();
     }
 
     @Test
     public void testLoginWithEmptyEmail() {
-        page.clickButtonContinueWithEmail();
+        step.fillEmailAddressAndSubmit("");
     }
 
     @Test
     public void testLoginWithIncorrectEmail() {
-        page.inputIncorrectEmailAddress(8);
-        page.clickButtonContinueWithEmail();
+        step.fillEmailAddressAndSubmit("email");
     }
 
     @Test
     public void testLoginWithCorrectEmail() {
-        page.inputCorrectEmailAddress(8);
-        page.clickButtonContinueWithEmail();
+        step.fillEmailAddressAndSubmit("test@mail.com");
     }
 
     @Test
     public void testLoginWithCorrectEmailAndEmptyPassword() {
-        page.inputCorrectEmailAddress(8);
-        page.clickButtonContinueWithEmail();
-        page.clickButtonSignIn();
+        step.fillLoginFormAndSubmit("test@mail.com", "");
     }
 
     @Test
     public void testLoginWithCorrectEmailAndAnyPassword() {
-        page.inputCorrectEmailAddress(8);
-        page.clickButtonContinueWithEmail();
-        page.inputPassword(8);
-        page.clickButtonSignIn();
+        step.fillLoginFormAndSubmit("test@mail.com", "asdfg234");
     }
 
     @AfterEach

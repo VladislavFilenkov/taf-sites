@@ -5,45 +5,35 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import java.util.concurrent.TimeUnit;
-
 public class TripadvisorTest {
     ChromeDriver driver;
-    TripadvisorPage page;
+    TripadvisorStep step;
 
     @BeforeEach
     public void warmUp() {
         driver = new ChromeDriver();
-        page = new TripadvisorPage(driver);
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        driver.get("https://www.tripadvisor.com");
-        page.clickSignInOrRegister();
-        page.switchToIframe();
-        page.clickButtonContinueWithEmail();
+        step = new TripadvisorStep(driver);
+        step.preparatoryActions();
     }
 
     @Test
     public void testLoginWithEmptyEmailAndEmptyPassword() {
-        page.clickButtonSignIn();
+        step.fillLoginFormAndSubmit("", "");
     }
 
     @Test
     public void testLoginWithIncorrectEmail() {
-        page.inputIncorrectEmailAddress(8);
-        page.clickButtonSignIn();
+        step.fillLoginFormAndSubmit("email", "");
     }
 
     @Test
     public void testLoginWithCorrectEmailAndEmptyPassword() {
-        page.inputCorrectEmailAddress(8);
-        page.clickButtonSignIn();
+        step.fillLoginFormAndSubmit("test@mail.com", "");
     }
 
     @Test
     public void testLoginWithCorrectEmailAndAnyPassword() {
-        page.inputCorrectEmailAddress(8);
-        page.inputPassword(8);
-        page.clickButtonSignIn();
+        step.fillLoginFormAndSubmit("test@mail.com", "fvsd76f");
     }
 
     @AfterEach
