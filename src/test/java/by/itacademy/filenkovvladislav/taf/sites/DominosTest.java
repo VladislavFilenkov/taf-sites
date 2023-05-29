@@ -7,23 +7,25 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class DominosTest {
     ChromeDriver driver;
+    Util util;
     DominosStep step;
 
     @BeforeEach
     public void warmUp() {
         driver = new ChromeDriver();
+        util = new Util();
         step = new DominosStep(driver);
         step.preparatoryActions();
     }
 
     @Test
     public void testLoginWithIncorrectEmailAndAnyPassword() {
-        step.fillLoginFormAndSubmit("email", "3edc4f");
+        step.fillLoginFormAndSubmit(util.randomIncorrectEmail, util.randomPassword);
     }
 
     @Test
     public void testLoginWithCorrectEmailAndAnyPassword() {
-        step.fillLoginFormAndSubmit("test@mail.com", "3edc4f");
+        step.fillLoginFormAndSubmit(util.randomCorrectEmail, util.randomPassword);
     }
 
     @AfterEach
