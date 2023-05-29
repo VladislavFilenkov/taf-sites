@@ -3,8 +3,6 @@ package by.itacademy.filenkovvladislav.taf.sites;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-import java.util.concurrent.TimeUnit;
-
 public class TripadvisorPage {
     private WebDriver driver;
     private String switchToIframeXpath = "//iframe[@title='regcontroller']";
