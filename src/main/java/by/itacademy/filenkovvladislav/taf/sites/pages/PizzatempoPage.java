@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 
 public class PizzatempoPage {
     private WebDriver driver;
+    private String baseUrl = "https://www.pizzatempo.by/";
     private String emailAddressName = "astroauth_login";
     private String passwordName = "astroauth_pass";
     private String buttonSignInName = "astroauth_submit";
@@ -14,7 +15,7 @@ public class PizzatempoPage {
     }
 
     public void openWebSite() {
-        driver.get("https://www.pizzatempo.by/");
+        driver.get(baseUrl);
     }
 
     public void inputEmailAddress(String email) {

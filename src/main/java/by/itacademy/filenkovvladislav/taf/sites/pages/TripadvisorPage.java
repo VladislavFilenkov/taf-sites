@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 
 public class TripadvisorPage {
     private WebDriver driver;
+    private String baseUrl = "https://www.tripadvisor.com";
     private String switchToIframeXpath = "//iframe[@title='regcontroller']";
     private String signInOrRegisterXpath = "//span[text()='Sign in']";
     private String buttonContinueWithEmailXpath = "//span[text()='Continue with email']";
@@ -17,7 +18,7 @@ public class TripadvisorPage {
     }
 
     public void openWebSite() {
-        driver.get("https://www.tripadvisor.com");
+        driver.get(baseUrl);
     }
 
     public void switchToIframe() {

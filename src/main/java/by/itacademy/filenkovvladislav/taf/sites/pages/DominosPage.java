@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 public class DominosPage {
     private WebDriver driver;
 
+    private String baseUrl = "https://dominos.by/";
     private String popUpXpath = "//button[@data-test-type='close']";
     private String signInXpath = "//button[@data-test-type='login']";
     private String emailAddressByName = "email";
@@ -18,7 +19,7 @@ public class DominosPage {
     }
 
     public void openWebSite() {
-        driver.get("https://dominos.by/");
+        driver.get(baseUrl);
     }
 
     public void closePopUp() {

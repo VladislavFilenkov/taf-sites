@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 
 public class BookingPage {
     private WebDriver driver;
+
+    private String baseUrl = "https://www.booking.com";
     private String popUpXpath = "//button[@aria-label='Скрыть меню входа в аккаунт.']";
     private String signInOrRegisterXpath = "//a[@data-testid='header-sign-up-button']";
     private String emailAddressName = "username";
@@ -18,7 +20,7 @@ public class BookingPage {
     }
 
     public void openWebSite() {
-        driver.get("https://www.booking.com");
+        driver.get(baseUrl);
     }
 
     public void closePopUp() {
