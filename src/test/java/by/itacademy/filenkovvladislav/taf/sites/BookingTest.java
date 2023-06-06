@@ -1,5 +1,6 @@
 package by.itacademy.filenkovvladislav.taf.sites;
 
+import by.itacademy.filenkovvladislav.taf.sites.steps.BookingStep;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

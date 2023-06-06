@@ -1,4 +1,4 @@
-package by.itacademy.filenkovvladislav.taf.sites;
+package by.itacademy.filenkovvladislav.taf.sites.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

@@ -1,5 +1,6 @@
-package by.itacademy.filenkovvladislav.taf.sites;
+package by.itacademy.filenkovvladislav.taf.sites.steps;
 
+import by.itacademy.filenkovvladislav.taf.sites.pages.BookingPage;
 import org.openqa.selenium.WebDriver;
 
 public class BookingStep {
