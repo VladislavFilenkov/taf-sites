@@ -13,6 +13,7 @@ public class DominosPage {
     private String emailAddressByName = "email";
     private String passwordByName = "password";
     private String buttonSignInXpath = "//button[@type='submit' and @data-test='custom-button']";
+    public String alertInvalidLogOrPwdLocator = "//div[@class='notification__content']";
 
     public DominosPage(WebDriver driver) {
         this.driver = driver;
@@ -43,5 +44,10 @@ public class DominosPage {
 
     public void clickButtonSignIn() {
         driver.findElement(By.xpath(buttonSignInXpath)).click();
+    }
+
+    public String getAlertText(String locator) {
+        WebElement alertText = driver.findElement(By.xpath(locator));
+        return alertText.getText();
     }
 }

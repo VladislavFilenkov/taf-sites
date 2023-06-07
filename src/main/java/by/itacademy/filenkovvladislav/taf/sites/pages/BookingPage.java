@@ -15,6 +15,9 @@ public class BookingPage {
     private String passwordId = "password";
     private String buttonSignInXpath = "//button[@type='submit']";
 
+    public String alertEmailId = "username-note";
+    public String alertPasswordId = "password-note";
+
     public BookingPage(WebDriver driver) {
         this.driver = driver;
     }
@@ -49,4 +52,10 @@ public class BookingPage {
     public void clickButtonSignIn() {
         driver.findElement(By.xpath(buttonSignInXpath)).click();
     }
+
+    public String getAlertText(String locator) {
+        WebElement alertText = driver.findElement(By.id(locator));
+        return alertText.getText();
+    }
+
 }

@@ -2,6 +2,7 @@ package by.itacademy.filenkovvladislav.taf.sites.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class PizzatempoPage {
     private WebDriver driver;
@@ -9,6 +10,7 @@ public class PizzatempoPage {
     private String emailAddressName = "astroauth_login";
     private String passwordName = "astroauth_pass";
     private String buttonSignInName = "astroauth_submit";
+    public String alertInvalidLogOrPwdLocator = "//div[@class='popupContent']";
 
     public PizzatempoPage(WebDriver driver) {
         this.driver = driver;
@@ -28,5 +30,14 @@ public class PizzatempoPage {
 
     public void clickButtonSignIn() {
         driver.findElement(By.name(buttonSignInName)).click();
+    }
+
+    public String getAlertText() {
+        return driver.switchTo().alert().getText();
+    }
+
+    public String getAlertText(String locator) {
+        WebElement alertText = driver.findElement(By.xpath(locator));
+        return alertText.getText();
     }
 }

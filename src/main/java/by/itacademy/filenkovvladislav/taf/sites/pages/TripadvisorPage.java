@@ -2,6 +2,7 @@ package by.itacademy.filenkovvladislav.taf.sites.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class TripadvisorPage {
     private WebDriver driver;
@@ -12,6 +13,8 @@ public class TripadvisorPage {
     private String emailAddressId = "regSignIn.email";
     private String passwordId = "regSignIn.password";
     private String buttonSignInXpath = "//*[@id='regSignIn']//button[text()='Sign in']";
+    public String alertLocator = "//div[@class='body_text']";
+    public String alertInvalidLogOrPwdLocator = "//*[@id='regErrors']//li";
 
     public TripadvisorPage(WebDriver driver) {
         this.driver = driver;
@@ -43,5 +46,9 @@ public class TripadvisorPage {
 
     public void clickButtonSignIn() {
         driver.findElement(By.xpath(buttonSignInXpath)).click();
+    }
+    public String getAlertText(String locator) {
+        WebElement alertText = driver.findElement(By.xpath(locator));
+        return alertText.getText();
     }
 }
