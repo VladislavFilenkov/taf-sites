@@ -19,6 +19,4 @@ public class Util {
         return faker.internet().password();
     }
 
-    String str;
-
 }
